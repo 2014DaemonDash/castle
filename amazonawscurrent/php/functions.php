@@ -22,9 +22,9 @@ $car = 'True';
 } 
 #mysqli_real_escape_string($con, $_POST['car']);
 $email = mysqli_real_escape_string($con, $_POST['email']);
-#echo $email;
-#echo $date;
-#echo $phone_number;
+echo $email;
+echo $date;
+echo $phone_number;
 $seatstaken = 1;
 $hash=(string)uniqid();
 
@@ -32,7 +32,7 @@ $hash=(string)uniqid();
 if(!mysqli_query($con,$sql)){
 	die('Error: ' . mysqli_error($con));
 }
-#echo "1 record added";
+echo "1 record added";
 mysqli_close($con);
 
 $page= <<<EOPAGE
@@ -58,21 +58,17 @@ $page= <<<EOPAGE
         </ul>
       </nav>
     </div>
-<h2>Driver Email: $email Driver Phone Number: $phone_number<h2>
+<div class="wrapper">
+<h3>Thanks for using Hitch! Expect other Hitch! users to contact you soon! You will be redirected to the homepage shortly.<h3>
+</div>
 </body>
 </html>
 EOPAGE;
-
-$confirmation = "Hi, Thanks for using HitchedUp to offer rides to other people!\nYour offer is now live, so be prepared for other hitchers to hitch onto your ride! Thanks so much for helping make the Earth a greener place!\nLove,\nYour friends at HitchedUp\nAndrew,Andrew,Alex,and Oz";
-
-mail($email, "Ride offer confirm", $confirmation);
+echo $page;
 #$myfile = fopen("/var/www/html/website/hashes/$hash.php", "w");
 #fwrite($myfile, $page);
 #fclose($myfile); 
 #system("sudo echo '$page' > /var/www/html/website/hashes/$hash.php");
 
-#echo $seatstaken;
-#echo $origin;
-
+ header( "refresh:5; url=http://ec2-54-68-205-187.us-west-2.compute.amazonaws.com/website/templates");
 ?>
-
